@@ -1,5 +1,5 @@
 # Swift-for-Intermediate-iOS-Developers
- 
+
 
 <br>
 
@@ -23,7 +23,8 @@ Udemy 강의를 공부한 내용 토대로 토의 하는 방식으로 스터디 
 
 ### 1주차 스터디 
 - 1/28(토), 오후 2시 ~ 4시
-- 👩🏻‍💻
+- Section 2: Swift Collections ~ Section 3: Functions
+- 👩🏻‍💻 [applebuddy](https://github.com/applebuddy) | [AppleCEO](https://github.com/appleceo) | [Jae-eun](https://github.com/jae-eun)
 
 
 
