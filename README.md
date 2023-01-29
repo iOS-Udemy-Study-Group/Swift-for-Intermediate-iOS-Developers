@@ -9,19 +9,24 @@
 
 
 
-<br>
+
+
+## 스터디 방식
+
+- Udemy 강의를 구매 후 개별 인증을 해야 스터디 참여 가능
+- 각자 학습한 내용을 공용 study git repository에 공유하고 토의하면서 내용 보완
+  - 개인적으로 공부한 내용을 개인폴더에 기록 (fork 후, 개인 스터디 내용 기록 했다가 공용 repository에 PR)
+    - 각자 의무감을 갖고 스터디하기 위함
+  - 매주 다수결로 스터디 날짜 지정 후, 2시간씩 스터디 진행
+- 스터디 기록 정리 방식에 대한 좋은 의견 자유롭게 공유
+- 스터디 중에 자유롭게 이해한 내용을 얘기할 수 있으며, 이해가 되지 않은 내용이 있다면 언제든지 공유
 
 
 
-## 스터디 계획
 
-Udemy 강의를 공부한 내용 토대로 토의 하는 방식으로 스터디 예정
-
-- Udemy 강의를 구매 후 인증을 해야 스터디 참여 가능
-
-- 매주 다수결로 스터디 날짜 지정 후, 2시간 스터디 진행
 
 ### 1주차 스터디 
+
 - 1/28(토), 오후 2시 ~ 4시
 - Section 2: Swift Collections ~ Section 3: Functions
 - 👩🏻‍💻 [applebuddy](https://github.com/applebuddy) | [AppleCEO](https://github.com/appleceo) | [Jae-eun](https://github.com/jae-eun)
@@ -29,22 +34,6 @@ Udemy 강의를 공부한 내용 토대로 토의 하는 방식으로 스터디 
 
 
 <br>
-
-
-
-## 스터디 방식
-
-- 각자 학습한 내용을 공용 study git repository에 공유
-
-  - 개인적으로 공부한 내용을 개인폴더에 기록 (fork 후, 개인 스터디 내용 기록 했다가 공용 repository에 PR)
-
-  - 각자 적당한 의무감을 갖고 스터디하기 위함
-
-- 스터디 기록 정리 방식에 대한 좋은 의견 자유롭게 공유
-
-- 스터디 중에 자유롭게 이해한 내용을 얘기할 수 있으며, 잘못되었다고 생각하거나, 이해가 되지 않은 내용이 있다면 언제든지 공유
-
-
 
 
 
@@ -287,6 +276,83 @@ for pair in pairs {
 ~~~
 
 
+
+## Section 3: Functions
+
+### Nested function, 중첩 함수
+
+- 함수 내에 또다른 함수를 정의하여 함수내에서 사용할 수 있다. 함수 내의 코드를 함수로 분리해서 사용하고 싶을때 사용 가능
+  - 하지만, 적시에 사용하지 않으면 오히려 코드의 가독성이 떨어지게 될 수 있다.
+
+~~~swift
+// MARK: - Nested Functions
+
+func makeApp() {
+  // 함수안에 함수가 정의되어 사용 가능
+  func design() {}
+  func develop() {}
+  func qa() {}
+  func distribution() {}
+  
+  design()
+  develop()
+  qa()
+  distribution()
+}
+
+makeApp()
+~~~
+
+
+
+### Closure
+
+- Closure는 1급객체이자 익명함수입니다. 함수, 콜벡함수 등으로 사용될 수 있습니다.
+  - Closure는 할당받을 수 있고, 인자로 전달도 되며, 반환도 가능합니다.
+
+~~~swift
+// 하나의 인자를 받아 그 값을 출력하는 함수의 역할을 하는 closure
+let hello: (String) -> () = { name in
+  print("hello, \(name)!")
+}
+
+// 두 개의 인자를 받아 곱을 반환하는 함수의 역할을 하는 closure
+let pow: (Int, Int) -> Int = {
+  $0 * $1
+}
+
+// closure 사용 예시
+hello("John Doe")
+let result = pow(5, 3)
+print(result)
+/* == output ==
+ hello, John Doe!
+ 15
+*/
+~~~
+
+
+
+- Closure 내에서 사용되는 변수, 상수가 메모리가 해제 되지 않고, 외부로 전달이 되는 경우, escaping closure임을 명시해주어야 한다.
+  - escaping keyword를 명시하지 않으면 Escaping closure captures non-escaping parameter 'completion' 컴파일 에러 발생
+  - escaping closure 방식 대신,  async await 방식으로 개선해서 사용할 수도 있다.
+
+~~~swift
+// escaping keyword 명시 안하면, Escaping closure captures non-escaping parameter 'completion' compile error 발생
+// 외부에서 parameter를 접근하는 경우, escaping closure가 되어야 한다.
+func getPosts(completion: @escaping ([String]) -> ()) {
+  var posts: [String] = []
+  DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+    posts = ["Hello World", "Introduction to Closures"]
+    completion(posts)
+  }
+}
+
+getPosts { posts in
+  // 약 2초 뒤, ["Hello World", "Introduction to Closures"] 를 받게 됨
+  print(posts)
+}
+~~~
 
 
 
