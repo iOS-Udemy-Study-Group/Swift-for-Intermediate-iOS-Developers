@@ -29,13 +29,15 @@
 
 - 1/28(토), 오후 2시 ~ 4시 (완료)
 - Section 2: Swift Collections ~ Section 3: Functions
-- 👩🏻‍💻 [applebuddy](https://github.com/applebuddy) | [AppleCEO](https://github.com/appleceo) | [Jae-eun](https://github.com/jae-eun)
+- 👩🏻‍💻 [applebuddy](https://github.com/applebuddy) | [AppleCEO](https://github.com/appleceo) | [Jae-eun](https://github.com/jae-eun) 
 
 ### 2주차 스터디 
 
-- 2/4(토), 오후 9시 ~ 11시
-- Section 4 ~
-- 👩🏻‍💻 
+- 2/4(토), 오후 9시 ~ 11시 (완료)
+- Section 4: Enumerations ~ Section 5: Properties, Lazy Stored Properties
+- 👩🏻‍💻 [applebuddy](https://github.com/applebuddy) | [AppleCEO](https://github.com/appleceo) | [Jae-eun](https://github.com/jae-eun) | [Lim-YongKwan](https://github.com/lim-yongkwan)
+
+
 
 <br>
 
