@@ -45,7 +45,7 @@
 
 ### 4주차 스터디 
 
-- 
+- 2/19(일), 오전 10시 ~ 12시
 - Section 5: Error Handling, Example 2, Throwing Errors ~
 - 👩🏻‍💻 
 
