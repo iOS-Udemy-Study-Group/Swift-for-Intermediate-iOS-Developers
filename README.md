@@ -46,8 +46,8 @@
 ### 4주차 스터디 
 
 - 2/19(일), 오전 10시 ~ 12시
-- Section 5: Error Handling, Example 2, Throwing Errors ~
-- 👩🏻‍💻 
+- Section 5: Error Handling, Example 2, Throwing Errors ~ Section 9: Async and Await
+- 👩🏻‍💻 [applebuddy](https://github.com/applebuddy) | [AppleCEO](https://github.com/appleceo) | [Jae-eun](https://github.com/jae-eun) | [Lim-YongKwan](https://github.com/lim-yongkwan)
 
 <br>
 
