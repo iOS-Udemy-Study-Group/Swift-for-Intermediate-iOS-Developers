@@ -49,6 +49,12 @@
 - Section 5: Error Handling, Example 2, Throwing Errors ~ Section 9: Async and Await
 - 👩🏻‍💻 [applebuddy](https://github.com/applebuddy) | [AppleCEO](https://github.com/appleceo) | [Jae-eun](https://github.com/jae-eun) | [Lim-YongKwan](https://github.com/lim-yongkwan)
 
+### 5주차 스터디
+
+- 3/5(일), 오전 9시 ~ 11시
+- Section 9: Async and Await ~
+- 👩🏻‍💻
+
 <br>
 
 
