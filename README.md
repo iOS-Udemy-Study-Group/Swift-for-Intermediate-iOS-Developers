@@ -52,8 +52,8 @@
 ### 5주차 스터디
 
 - 3/5(일), 오전 9시 ~ 11시
-- Section 9: Async and Await ~
-- 👩🏻‍💻
+- Section 9: Async and Await ~ Section 12: Handling Error for Async Architecture, Using Result Type
+- 👩🏻‍💻 [applebuddy](https://github.com/applebuddy) | [AppleCEO](https://github.com/appleceo) | [Jae-eun](https://github.com/jae-eun)
 
 <br>
 
@@ -457,6 +457,115 @@ Button {
 
 
 ## Section 10: Protocol Oriented Design
+
+
+
+### Protocol의 associatedtype과 generic type 사용방법, where 절을 활용한 타입 제약설정 하기
+
+~~~swift
+import Foundation
+
+// MARK: 연관타입(associatedtype), 제네릭(generic), where 절 associatedtype 제약 활용하기
+// Parser protocol은 Input, Output 두개의 연관타입(associatedtype)을 갖습니다.
+// Parser를 채택하는 곳에서 입맛에 따라 Input, Output 타입을 typealias로 지정하여 사용 가능합니다.
+protocol Parser {
+  associatedtype Input
+  associatedtype Output
+  
+  func parse(input: Input) -> Output
+}
+
+class NewParser: Parser {
+  // NewParser 클래스에서의 Input 타입은 String, Output 타입은 [String: String]으로 간주가 됩니다.
+  typealias Input = String
+  typealias Output = [String: String]
+  
+  func parse(input: Input) -> Output {
+    return [input: input]
+  }
+}
+
+// 제네릭 타입을 사용해서 Parser protocol의 연관타입에 대한 제약을 줄 수 있습니다.
+// 가령 아래 메서드의 경우, parser는 Parser protocol을 준수해야 하며, inputs의 elements는 NewParser의 Input타입인 경우에만 사용이 가능합니다.
+func runParse<P: Parser>(parser: P, inputs: [P.Input]) where P.Input == NewParser.Input {
+  inputs.forEach {
+    let result = parser.parse(input: $0)
+    print(result)
+  }
+}
+
+func test() {
+  let newParser = NewParser()
+  runParse(parser: newParser, inputs: ["input", "input2"])
+}
+
+test()
+// - Output
+/*
+["input": "input"]
+["input2": "input2"]
+*/
+~~~
+
+
+
+### Protocol Composition, 프로토콜 구성
+
+~~~swift
+import Foundation
+
+// MARK: Protocol Composition (프로토콜 구성)
+
+struct Lecture {
+  let title: String
+  let time: Int
+}
+
+// Student, VerifiedStudent protocol은 각기 다른 멤버, 메서드가 정의되어 있습니다.
+protocol Student {
+  var lectures: [Lecture] { get set }
+  mutating func enroll(_ lecture: Lecture)
+}
+
+protocol VerifiedStudent {
+  func verify() -> Bool
+}
+
+// 아래 extension 기능은 VerifiedStudent, Student 둘 다 준수하는 경우에 사용 가능하다.
+// protocol composition
+extension VerifiedStudent where Self : Student {
+  /// protocol에 mutating func으로 지정되어 있어도, extension부에서 일반 func으로 정의하여 사용할 수 있다.
+  func enroll(_ lecture: Lecture) {
+    if verify() {
+      print("Verified and Enrolled")
+    }
+  }
+  
+  func verify() -> Bool {
+    return true
+  }
+}
+
+// VerifiedStudent, Student 프로토콜을 동시에 준수하는 InternationalStudent는 위에 구현한 extension 기능을 사용 가능하다.
+// protocol에서 지정한 멤버, 메서드를 별도로 구현하지 않으면 extension에서 구현한 default 기능이 적용된다.
+// Student, VerifiedStudent를 준수하는 아래 구조체는 별도 구현하지 않은 enroll, verify 메서드가 extension에서 정의한 default 구현으로 적용된다.
+struct InternationalStudent: Student, VerifiedStudent {
+  var lectures: [Lecture] = []
+}
+
+let student = InternationalStudent()
+print(student.verify())
+student.enroll(Lecture(title: "myLecture", time: 3))
+// - Output
+/*
+ true
+ Verified and Enrolled
+*/
+~~~
+
+
+
+
 
 ### 제네릭타입을 사용한 객체 vs 제네릭타입을 제거 후, 프토토콜 타입만 적용한 객체의 차이
 
