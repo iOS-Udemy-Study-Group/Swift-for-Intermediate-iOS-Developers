@@ -460,7 +460,7 @@ struct Workout {
 
 ### propertyObservers
 
-- didSet { } 등을 사용해 프로퍼티가 변경되는 것을 탐지하여 어떤 동작을 수행할 수 있다.
+- didSet 과 willSet 을 사용해 프로퍼티가 변경되는 것을 탐지하여 어떤 동작을 수행할 수 있다.
 
 - 초기화 시에는 didSet 이 호출되지 않는데 그 때는 defer 를 사용해 우회적으로 didSet을 호출할 수 있다.
 
