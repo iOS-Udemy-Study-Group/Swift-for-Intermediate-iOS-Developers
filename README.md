@@ -55,6 +55,12 @@
 - Section 9: Async and Await ~ Section 12: Handling Error for Async Architecture, Using Result Type
 - 👩🏻‍💻 [applebuddy](https://github.com/applebuddy) | [AppleCEO](https://github.com/appleceo) | [Jae-eun](https://github.com/jae-eun)
 
+### 6주차 스터디
+
+- 3/5(일), 오전 9시 ~ 11시
+- Section 12: Using Result Type ~ finished
+- 👩🏻‍💻 [applebuddy](https://github.com/applebuddy) | [AppleCEO](https://github.com/appleceo) | [Lim-YongKwan](https://github.com/lim-yongkwan)
+
 <br>
 
 
