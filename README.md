@@ -437,6 +437,55 @@ enum ImageType: String {
 
 
 
+## Section 5: Properties
+
+### Lazy stored properties
+
+- 문제를 5초 후에 돌려주는 프로퍼티를 만들고 호출하면 매 문제를 받으려면 5초를 기다려야 한다. 이미 있는 문제인데도 5초를 기다리는 것이 불필요할 때 lazy 를 붙이고 가장 뒤에 () 를 붙여서 lazy 프로퍼티를 만들 수 있다. 이렇게 되면 두번째 문제를 받을 때 5초 기다리지 않고 바로 받을 수 있다.
+
+- lazy 프로퍼티는 접근하는 시점에 초기화되는 특성이 있다.
+
+### computed properties
+
+- 연산 프로퍼티라고도 불리운다.
+
+- 시작 시간 프로퍼티와 끝난 시간 프로퍼티를 따로 불러와서 빼줘서 걸린 시간을 계산할 수 있다.
+
+- 아래와 같이 연산 프로퍼티를 선언하여 시작 시간과 끝난 시간의 차이를 바로 가져올 수 있다.
+
+~~~swift
+struct Workout {
+  let startTime: Date
+  let endTime: Date
+
+  var timeElapsed: TimeInterval {
+    endTime.timeIntervalSince(startTime)
+  }
+}
+~~~
+
+### propertyObservers
+
+- didSet 과 willSet 을 사용해 프로퍼티가 변경되는 것을 탐지하여 어떤 동작을 수행할 수 있다.
+
+- 초기화 시에는 didSet 이 호출되지 않는데 그 때는 defer 를 사용해 우회적으로 didSet을 호출할 수 있다.
+
+- 아래 코드에서는 초기화부터 url이 바뀔 때마다 인코딩을 해줘서 url 프로퍼티가 항상 url 인코딩된 것을 보장한다.
+~~~swift
+struct Website {
+  init(url: String) {
+    defer { self.url = url }
+    
+    self.url = url
+  }
+  
+  var url: String {
+    didSet {
+      url = url.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? url
+    }
+}
+~~~
+
 
 ## Section 9: Async and Await
 
